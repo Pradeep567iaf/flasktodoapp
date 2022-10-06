@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+    
+    {% block content %}
+    <div class="container my-4  p-2">
+        <div class="d-flex justify-content-between">
+            <a href="/backhome"><div class="btn btn-outline-primary">&laquo; Back</div></a>
+            <a href="/addanothertask"><div class="btn btn-outline-primary"><i class="fa fa-plus"></i> Add Task </div></a>
+        </div>
+        <h3 class="fw-bold bg-warning text-center my-2">MY TASK</h3>
+        {% if alltodo %}
+            <div class="row">
+                {% for task in alltodo %}
+                    <div class="col-4 my-2">
+                        <div class="card mx-2 my-2 p-2 h-100 mytask-cards" >
+                            <div class="card-body">
+                                <span><h5 class="card-title d-inline">Title<p class="text-muted"> {{task.title}}</p></h5></span>
+                                <span><h6 class="card-subtitle mb-2 ">Date <p class="text-muted mx-1">{{task.date_created}}</p></h6></span>
+                            <h6 class="card-text">Description <p class="text-muted mx-1">{{task.desc}}</p></h6>
+                            <div class="d-flex justify-content-between">
+                                <a href="/delete/{{task.sno}}" class="card-link btn btn-danger">Delete</a>
+                                <a href="/update/{{task.sno}}" class="card-link btn btn-primary">Update</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-primary" role="alert">
+                No Task To Show !
+            </div>
+
+        {% endif %}
+    </div>
+    {% endblock content %}
+  

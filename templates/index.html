@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container my-4 bg-warning p-2">
+        <form method="post" action="/">
+            <div class="mb-3">
+              <label for="title" class="form-label">Task Title</label>
+              <input type="text" class="form-control" id="title" name="title" aria-describedby="tile">
+            
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Task Description</label>
+              <input type="text" class="form-control" id="description" name="description">
+            </div>
+          
+            <button type="submit" class="btn btn-primary">ADD</button>
+          </form>
+
+    </div>
+    <div class="container my-4">
+      {% if alltodo|length  %}
+        <h3 class="fw-bold text-center my-2">MY TASKS</h3>
+        <table class="table table-dark table-hover">
+            <thead>
+              <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Created</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Update</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for task in alltodo %}
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{task.title}}</td>
+                <td>{{task.desc}}</td>
+                <td>{{task.date_created}}</td>
+                <td><a href="/delete/{{task.sno}}"><button class="btn btn-danger">Delete</button></a></td>
+                <td><a href="/update/{{task.sno}}"><button class="btn btn-primary">Update</button></a></td>
+              </tr>
+              {% endfor %}
+              
+            </tbody>
+          </table>
+        {% else %}
+          <h3 class="fw-bold text-center my-2">MY TASKS</h3>
+          <div class="alert alert-danger" role="alert">
+             No Task To Show !
+          </div>
+        {% endif %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+{% endblock content %}

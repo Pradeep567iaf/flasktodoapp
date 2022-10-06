@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if task %}
+    <div class="container my-4 bg-warning p-2">
+        <h3 class="fw-bold text-center my-2">EDIT TASK</h3>
+        <form method="post" action="/update/{{task.sno}}">
+            <div class="mb-3">
+              <label for="title" class="form-label">Task Title</label>
+              <input type="text" class="form-control" id="title" name="title" aria-describedby="title" value="{{task.title}}">
+            
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Task Description</label>
+              <input type="text" class="form-control" id="description" name="description" value="{{task.desc}}">
+            </div>
+          
+            <button type="submit" class="btn btn-primary">EDIT</button>
+          </form>
+
+    </div>
+    {% endif %}
+{% endblock content %}
